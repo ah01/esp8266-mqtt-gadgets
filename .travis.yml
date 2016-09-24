@@ -27,4 +27,4 @@
      - pip install -U platformio
 
  script:
-     - platformio run -d fw
+     - platformio run --project-dir fw
