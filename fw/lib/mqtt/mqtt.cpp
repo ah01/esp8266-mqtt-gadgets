@@ -8,8 +8,6 @@
 
 #include <logger.h>
 
-static Logger logger("mqtt");
-
 const char* mqtt_server = "mqtt.sh.cvut.cz";
 
 #define MQTT_TOPIC_PREFIX "/adam/";
@@ -26,13 +24,13 @@ PubSubClient mqtt(wifiClient);
 
 void callback(char* topic, byte* payload, unsigned int length) {
 
-  Serial.print("Message arrived [");
-  Serial.print(topic);
-  Serial.print("] ");
-  for (int i = 0; i < length; i++) {
-    Serial.print((char)payload[i]);
-  }
-  Serial.println();
+    LOGV("MQTT message ", topic);
+
+    for (int i = 0; i < length; i++) {
+        Serial.print((char)payload[i]);
+    }
+
+    Serial.println();
 
   if (strlen(topic) <= mqtt_prefix_len) {
       return;
@@ -66,7 +64,7 @@ void reconnect() {
 
     while (!mqtt.connected()) {
 
-        logger.info("Attempting MQTT connection");
+        LOG("MQTT Attempting connection");
 
         // Create a random client ID
         String clientId = "ESP8266Client-";
@@ -79,7 +77,7 @@ void reconnect() {
         // Attempt to connect
         // boolean connect(const char* id, const char* user, const char* pass, const char* willTopic, uint8_t willQos, boolean willRetain, const char* willMessage);
         if (mqtt.connect(clientId.c_str(), MQTT_USER, MQTT_PASS, willTopic.c_str(), MQTTQOS0, true, "offline")) {
-            logger.info("connected");
+            LOG("MQTT Connected");
 
             mqtt.publish(willTopic.c_str(), "online", true);
 

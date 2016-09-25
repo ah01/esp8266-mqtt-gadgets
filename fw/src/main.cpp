@@ -14,28 +14,24 @@
 
 WiFiManager wifiManager;
 
-static Logger lo("main");
-
 void setup()
 {
     Serial.begin(115200);
-    lo.info("Setup begin");
 
-    //wifiManager.autoConnect(); 
+    LOG("setup begin");
 
-    //log_info("Connected");
-    //log_info("Local IP", WiFi.localIP());
+    wifiManager.autoConnect();
+
+    LOGV("Local IP", WiFi.localIP());
 
     mqtt_setup();
-
     module_setup();
+
+    LOG("setup done");
 }
 
 void loop()
 {
     mqtt_loop();
-
-//    mqtt_in("", "");
-
     module_loop();
 }
