@@ -35,4 +35,4 @@
 
  script:
      - platformio run --project-dir fw
-     - ncftpput -u $FTPUSER -p $FTPPASS -m jslab.net /$TRAVIS_BRANCH--$TRAVIS_BUILD_NUMBER fw/pub/*.bin
+     - ncftpput -u $FTPUSER -p $FTPPASS -m jslab.net /`date +%Y-%m-%d_%H-%M-%S`--$TRAVIS_BRANCH--$TRAVIS_BUILD_NUMBER--$TRAVIS_COMMIT--$TRAVIS_BUILD_ID fw/pub/*.bin
