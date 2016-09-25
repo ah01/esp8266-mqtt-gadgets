@@ -15,10 +15,17 @@
 #
 
  language: python
+
  python:
      - "2.7"
 
+ addons:
+     apt:
+        packages:
+            - ncftp
+
  sudo: false
+
  cache:
      directories:
          - "~/.platformio"
@@ -28,4 +35,4 @@
 
  script:
      - platformio run --project-dir fw
-     - curl --ftp-create-dirs -T fw\pub\*.bin -u $FTPUSER:$FTPPASS ftp://jslab.net/$TRAVIS_BRANCH--$TRAVIS_BUILD_NUMBER/
+     - ncftpput -u $FTPUSER -p $FTPPASS -m jslab.net /$TRAVIS_BRANCH--$TRAVIS_BUILD_NUMBER fw/pub/*.bin
