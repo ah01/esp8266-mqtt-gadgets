@@ -28,4 +28,4 @@
 
  script:
      - platformio run --project-dir fw
-     - curl --ftp-create-dirs -T fw\.pioenvs\board_led\firmware.bin -u $FTPUSER:$FTPPASS ftp://jslab.net/$TRAVIS_BRANCH--$TRAVIS_BUILD_NUMBER/
+     - curl --ftp-create-dirs -T fw\pub\*.bin -u $FTPUSER:$FTPPASS ftp://jslab.net/$TRAVIS_BRANCH--$TRAVIS_BUILD_NUMBER/

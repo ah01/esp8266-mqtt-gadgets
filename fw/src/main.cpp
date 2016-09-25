@@ -21,10 +21,10 @@ void setup()
     Serial.begin(115200);
     lo.info("Setup begin");
 
-    wifiManager.autoConnect();
+    //wifiManager.autoConnect(); 
 
-    log_info("Connected");
-    log_info("Local IP", WiFi.localIP());
+    //log_info("Connected");
+    //log_info("Local IP", WiFi.localIP());
 
     mqtt_setup();
 
