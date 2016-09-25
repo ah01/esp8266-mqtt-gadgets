@@ -5,13 +5,13 @@
 #include "DHT.h"
 #include "mqtt.h"
 
-#define DHTPIN 2
-
-#ifndef DHTTYPE
-    #define DHTTYPE DHT11
+#ifndef DHTPIN
+    #define DHTPIN 2
 #endif
 
-#define BTNPIN 0
+#ifndef DHTTYPE
+    #define DHTTYPE DHT22
+#endif
 
 DHT dht(DHTPIN, DHTTYPE);
 
