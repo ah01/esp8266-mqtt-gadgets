@@ -35,5 +35,5 @@
 
  script:
      - platformio run --project-dir fw
-     - echo `date +%Y-%m-%d_%H-%M-%S`;$TRAVIS_BRANCH;$TRAVIS_BUILD_NUMBER;$TRAVIS_COMMIT;$TRAVIS_BUILD_ID > fw/pub/meta.txt
+     - echo "`date +%Y-%m-%d_%H-%M-%S`;$TRAVIS_BRANCH;$TRAVIS_BUILD_NUMBER;$TRAVIS_COMMIT;$TRAVIS_BUILD_ID" > fw/pub/meta.txt
      - ncftpput -u $FTPUSER -p $FTPPASS -m jslab.net /`date +%Y-%m-%d_%H-%M-%S` fw/pub/*
