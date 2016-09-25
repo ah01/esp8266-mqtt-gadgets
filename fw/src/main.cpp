@@ -18,16 +18,16 @@ void setup()
 {
     Serial.begin(115200);
 
-    LOG("setup begin");
+    CORE_LOG("setup begin");
 
     wifiManager.autoConnect();
 
-    LOGV("Local IP", WiFi.localIP());
+    CORE_LOGV("Local IP", WiFi.localIP());
 
     mqtt_setup();
     module_setup();
 
-    LOG("setup done");
+    CORE_LOG("setup done");
 }
 
 void loop()

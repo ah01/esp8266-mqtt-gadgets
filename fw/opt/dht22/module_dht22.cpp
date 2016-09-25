@@ -1,6 +1,7 @@
 #include "module.h"
 
 #include "Arduino.h"
+#include "logger.h"
 #include "DHT.h"
 #include "mqtt.h"
 
@@ -26,12 +27,11 @@ void module_mqtt_in(String topic, String payload)
 
     long i = payload.toInt();
 
-    Serial.print("Interval: ");
-    Serial.println(i);
+    LOGV("Interval", i);
 
     if (i <= 0 || i > 3600)
     {
-        Serial.println("Out of range");
+        LOG("Interval out of range");
         mqtt_publish("error", "Interval out of range (1 - 3600)");
         return;
     }
@@ -43,7 +43,7 @@ void module_mqtt_in(String topic, String payload)
 
 void module_setup()
 {
-    Serial.println("M: DHT22 setup");
+    LOG("DHT22 setup");
 
     dht.begin();
 }
@@ -57,7 +57,7 @@ void module_loop()
 
     time = millis();
 
-    Serial.println("M: DHT22 loop");
+    LOG("M: DHT22 loop");
 
     float h = dht.readHumidity();
     yield();
@@ -66,7 +66,7 @@ void module_loop()
     yield();
 
     if (isnan(h) || isnan(t)) {
-        Serial.println("Failed to read from DHT sensor!");
+        LOG("Failed to read from DHT sensor!");
         return;
     }
 

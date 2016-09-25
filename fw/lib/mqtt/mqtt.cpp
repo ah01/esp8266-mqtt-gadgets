@@ -24,7 +24,7 @@ PubSubClient mqtt(wifiClient);
 
 void callback(char* topic, byte* payload, unsigned int length) {
 
-    LOGV("MQTT message ", topic);
+    CORE_LOGV("MQTT message ", topic);
 
     for (int i = 0; i < length; i++) {
         Serial.print((char)payload[i]);
@@ -64,7 +64,7 @@ void reconnect() {
 
     while (!mqtt.connected()) {
 
-        LOG("MQTT Attempting connection");
+        CORE_LOG("MQTT Attempting connection");
 
         // Create a random client ID
         String clientId = "ESP8266Client-";
@@ -77,7 +77,7 @@ void reconnect() {
         // Attempt to connect
         // boolean connect(const char* id, const char* user, const char* pass, const char* willTopic, uint8_t willQos, boolean willRetain, const char* willMessage);
         if (mqtt.connect(clientId.c_str(), MQTT_USER, MQTT_PASS, willTopic.c_str(), MQTTQOS0, true, "offline")) {
-            LOG("MQTT Connected");
+            CORE_LOG("MQTT Connected");
 
             mqtt.publish(willTopic.c_str(), "online", true);
 
