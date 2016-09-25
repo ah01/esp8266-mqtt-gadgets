@@ -1,19 +1,4 @@
-# Continuous Integration (CI) is the practice, in software
-# engineering, of merging all developer working copies with a shared mainline
-# several times a day < http://docs.platformio.org/en/stable/ci/index.html >
-#
-# Documentation:
-#
-# * Travis CI Embedded Builds with PlatformIO
-#   < https://docs.travis-ci.com/user/integration/platformio/ >
-#
-# * PlatformIO integration with Travis CI
-#   < http://docs.platformio.org/en/stable/ci/travis.html >
-#
-# * User Guide for `platformio ci` command
-#   < http://docs.platformio.org/en/stable/userguide/cmd_ci.html >
-#
-
+ sudo: false
  language: python
 
  python:
@@ -23,8 +8,6 @@
      apt:
         packages:
             - ncftp
-
- sudo: false
 
  cache:
      directories:
