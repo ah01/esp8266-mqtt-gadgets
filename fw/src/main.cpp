@@ -23,8 +23,8 @@ void setup()
 
     wifiManager.autoConnect();
 
-    //log_info("Connected");
-    //log_info("Local IP", WiFi.localIP());
+    log_info("Connected");
+    log_info("Local IP", WiFi.localIP());
 
     mqtt_setup();
 

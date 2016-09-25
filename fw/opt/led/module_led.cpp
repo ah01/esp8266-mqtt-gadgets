@@ -7,7 +7,7 @@
 #include "mqtt.h"
 
 #define PIXEL_PIN   D2    // Digital IO pin connected to the NeoPixels.
-#define PIXEL_COUNT 8
+#define PIXEL_COUNT 60
 
 // Parameter 1 = number of pixels in strip,  neopixel stick has 8
 // Parameter 2 = pin number (most are valid)
@@ -16,7 +16,7 @@
 //   NEO_GRB     Pixels are wired for GRB bitstream, correct for neopixel stick
 //   NEO_KHZ400  400 KHz bitstream (e.g. FLORA pixels)
 //   NEO_KHZ800  800 KHz bitstream (e.g. High Density LED strip), correct for neopixel stick
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, NEO_RGB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, NEO_RGB + NEO_KHZ400);
 
 
 void module_mqtt_in(String topic, String payload)
@@ -28,7 +28,7 @@ void module_setup()
     Serial.println("M: LED setup");
 
     strip.begin();
-    strip.setBrightness(20);
+    //strip.setBrightness(20);
 
     strip.show(); // Initialize all pixels to 'off'
 }
@@ -157,8 +157,11 @@ void module_loop()
 {
     Serial.println("Loop");
 
+    rainbow(100);
+/*
     for(int i = 7; i < 10; i++)
     {
+        Serial.println(i);
         startShow(i);
 
         strip.clear();
@@ -168,5 +171,7 @@ void module_loop()
 
     }
 
+*/
+//    colorWipe(strip.Color(255, 255, 255), 150);    // Black/off
 
 }
